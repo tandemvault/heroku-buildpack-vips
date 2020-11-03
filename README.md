@@ -1,6 +1,14 @@
 heroku-buildpack-vips
 =====================
 
+# Vault Notes:
+
+Last built VIPS version: 8.10.2
+
+https://github.com/libvips/libvips/releases
+
+---
+
 Important notes:
 
 This buildpack started out as one of the many that are out there, and ended up
