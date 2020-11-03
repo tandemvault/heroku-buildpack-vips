@@ -35,7 +35,9 @@ RUN apt-get update && apt-get install -y \
 	liblcms2-dev \
 	libxml2-dev \
 	libfftw3-dev \
-  libpoppler-glib-dev
+  libpoppler-glib-dev \
+  libwebp-dev \
+  libde265-dev
 
 ARG GIFLIB_VERSION=5.1.4
 ARG GIFLIB_URL=http://downloads.sourceforge.net/project/giflib
@@ -70,6 +72,18 @@ RUN cd /usr/src \
 	&& ./configure --prefix=/usr/src/vips --disable-gtk-doc \
 	&& make \
 	&& make install
+
+ARG HEIF_VERSION=1.8.0
+ARG HEIF_URL=https://github.com/strukturag/libheif/releases/download
+
+RUN cd /usr/src \
+  && wget ${HEIF_URL}/v${HEIF_VERSION}/libheif-${HEIF_VERSION}.tar.gz \
+ 	&& tar xf libheif-${HEIF_VERSION}.tar.gz \
+ 	&& cd libheif-${HEIF_VERSION} \
+ 	&& ./autogen.sh \
+ 	&& ./configure --prefix=/usr/src/vips --disable-gtk-doc \
+ 	&& make \
+ 	&& make install
 
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
